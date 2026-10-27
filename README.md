@@ -10,7 +10,6 @@
 | [`screener.py`](screener.py) | Делает скриншоты экрана каждые 5 секунд в папку `screenshots/` |
 | [`augment.py`](augment.py) | Генерирует аугментированные копии скриншотов (albumentations) |
 | [`autolabel.py`](autolabel.py) | Автоматическая разметка изображений моделью |
-| [`crop_template.py`](crop_template.py) | Вырезает шаблоны элементов из скриншотов |
 | [`split_dataset.py`](split_dataset.py) | Раскладывает размеченные данные по `images/` и `labels/` (train/val) |
 | [`train.py`](train.py) | Обучение YOLO-модели |
 | [`app.py`](app.py) | Запуск бота: детекция экрана и клики по элементам игры |
