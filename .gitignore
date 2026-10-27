@@ -1,0 +1,40 @@
+# Виртуальные окружения
+.venv/
+.venv-cpu/
+env/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Модели и веса
+*.pt
+*.onnx
+yolov8n.pt
+
+# Результаты обучения
+runs/
+
+# Сгенерированные данные
+screenshots/
+screenshots_augmented/
+itog/
+
+# Датасет (картинки и разметка)
+images/
+labels/
+
+# Отладка
+debug_detection.png
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
