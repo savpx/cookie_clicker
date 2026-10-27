@@ -38,3 +38,8 @@ debug_detection.png
 Thumbs.db
 desktop.ini
 .DS_Store
+
+src
+uv.lock
+pyproject.toml
+
