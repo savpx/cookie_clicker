@@ -4,8 +4,8 @@ import albumentations as A
 from pathlib import Path
 
 # ——— Пути ———
-INPUT_DIR = "screenshots"
-OUTPUT_DIR = "screenshots_augmented"
+INPUT_DIR = r"C:\cookie_screen"
+OUTPUT_DIR = r"C:\cookie_screen"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 

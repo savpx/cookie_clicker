@@ -3,8 +3,8 @@ import time
 from datetime import datetime
 import os
 
-# Папка для сохранения скриншотов
-save_dir = "screenshots"
+# Папка для сохранения скриншотов (на диске C)
+save_dir = r"C:\cookie_screen"
 os.makedirs(save_dir, exist_ok=True)
 
 print("Начинаю делать скриншоты каждые 5 секунд...")

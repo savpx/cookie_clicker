@@ -21,6 +21,8 @@ runs/
 # Сгенерированные данные
 screenshots/
 screenshots_augmented/
+cookie_screen/
+cookie_screen_augmented/
 itog/
 
 # Датасет (картинки и разметка)
