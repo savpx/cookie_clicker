@@ -1,0 +1,10 @@
+type: yolov8
+name: MySuperCookerDetector
+display_name: savpx
+model_path: ./bestV1.onnx
+nms_threshold: 0.45
+confidence_threshold: 0.25
+classes:
+  - game
+  - upgrade
+  - advertising
