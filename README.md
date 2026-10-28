@@ -21,7 +21,7 @@
 
 | Файл | Назначение |
 |------|-----------|
-| [`app.py`](app.py) | **Запуск бота.** Делает скриншоты, гоняет YOLO, кликает по `game`/`upgrade`/`advertising`. Пробел — пауза. Сам берёт самую свежую модель из `runs/detect/*/weights/`. |
+| [`app.py`](app.py) | **Запуск бота.** Делает скриншоты, гоняет YOLO, кликает по `game`/`upgrade`/`advertising`. Пробел — пауза. Берёт самую свежую модель из `runs/detect/*/weights/`, а если обученных нет — готовую `bestV1.pt`. |
 | [`screener.py`](screener.py) | Снимает скриншоты экрана каждые 5 секунд — из них собирается датасет. |
 | [`augment.py`](augment.py) | Размножает изображения аугментациями (albumentations), чтобы данных для обучения было больше. |
 | [`split_dataset.py`](split_dataset.py) | Раскладывает размеченные пары `jpg`+`txt` по `images/` и `labels/` (train/val) для Ultralytics. |
@@ -29,7 +29,8 @@
 | [`data.yaml`](data.yaml) | Конфиг датасета для обучения: пути к картинкам и список классов. |
 | [`config.yaml`](config.yaml) | Конфиг детектора (тип модели, пороги, список классов). |
 | [`class.txt`](class.txt) | Список классов в нужном порядке — им руководствуются при разметке. |
-| [`bestV1.onnx`](bestV1.onnx) | Готовая ONNX-модель для инференса — если не хочется обучать заново. |
+| [`bestV1.pt`](bestV1.pt) | **Готовая модель** (ultralytics/torch) — используется по умолчанию, если своих обученных весов нет. Работает сразу после установки `requirements.txt`. |
+| [`bestV1.onnx`](bestV1.onnx) | ONNX-версия готовой модели. Нужен `onnxruntime` (не входит в `requirements.txt`), поэтому подключается только как альтернатива. |
 | [`requirements.txt`](requirements.txt) | Зависимости Python (`ultralytics`, `pyautogui`, `opencv`, `pynput`, …). |
 
 ---
