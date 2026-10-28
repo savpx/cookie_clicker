@@ -240,7 +240,7 @@ python app.py
 |----------|---------|
 | `ModuleNotFoundError: No module named 'ultralytics'` | Активировано ли окружение `(.venv)`? Проверьте `pip -V` и `python -c "import sys; print(sys.executable)"`. |
 | `OSError: [WinError 10060]` при `train.py` | Нет интернета для `yolov8n.pt` — скачайте вручную и положите в корень проекта. |
-| `FileNotFoundError: ... best.pt` в `app.py` | Модель ещё не обучена — выполните шаги 4–5, либо укажите путь в `DEFAULT_MODEL_PATH` в [`app.py`](app.py:31). |
+| `FileNotFoundError: Не найдена модель для запуска` в `app.py` | Нет ни обученных весов в `runs/detect/*/weights/`, ни `bestV1.pt`/`bestV1.onnx` в корне. Обучите модель (`python train.py`) или положите готовую `bestV1.pt` рядом с [`app.py`](app.py). |
 | Скриншот получается чёрным | Linux: Wayland → переключитесь на X11. macOS: не выдано разрешение «Запись экрана». |
 | Курсор не двигается / клики не работают | macOS: не выдано «Универсальный доступ». Linux: нужен `python3-xlib`. |
 | Кириллица в консоли Windows «кракозябрами» | Выполните `chcp 65001` или используйте Windows Terminal. |

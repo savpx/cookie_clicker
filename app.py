@@ -31,24 +31,47 @@ pyautogui.PAUSE = 0
 # ---------------------------------------------------------------------------
 # Модель
 # ---------------------------------------------------------------------------
-# Путь по умолчанию (используется, если автопоиск ничего не найдёт).
-DEFAULT_MODEL_PATH = "runs/detect/cookie_detector/weights/best.pt"
+# Готовые модели в корне проекта — используются, если обученных весов нет.
+FALLBACK_MODELS = ["bestV1.pt", "bestV1.onnx"]
 
 
 def find_latest_weights():
-    """Найти самый свежий best.pt среди runs/detect/*/weights/.
+    """Найти самую свежую обученную модель в runs/detect/*/weights/.
 
     YOLO при каждом обучении создаёт новую папку (cookie_detector,
     cookie_detector-2, ...), поэтому вместо жёсткого пути берём самую
-    недавно обученную модель — так бот всегда использует актуальные веса.
+    недавно обученную модель. Сначала ищем best.pt, затем last.pt
+    (last.pt сохраняется, даже если best не обновился).
+    Возвращает путь или None, если обученных весов нет.
     """
-    candidates = glob.glob(os.path.join("runs", "detect", "*", "weights", "best.pt"))
-    if not candidates:
-        return DEFAULT_MODEL_PATH
-    return max(candidates, key=os.path.getmtime)
+    for pattern in ("best.pt", "last.pt", "*.pt"):
+        candidates = glob.glob(
+            os.path.join("runs", "detect", "*", "weights", pattern)
+        )
+        if candidates:
+            return max(candidates, key=os.path.getmtime)
+    return None
 
 
-MODEL_PATH = find_latest_weights()
+def resolve_model_path():
+    """Выбрать модель: свежая обученная, иначе готовая из корня проекта."""
+    trained = find_latest_weights()
+    if trained:
+        return trained
+    for fallback in FALLBACK_MODELS:
+        if os.path.exists(fallback):
+            return fallback
+    return FALLBACK_MODELS[0]
+
+
+MODEL_PATH = resolve_model_path()
+if not os.path.exists(MODEL_PATH):
+    raise FileNotFoundError(
+        "Не найдена модель для запуска.\n"
+        "  • Обучите её: python train.py (веса появятся в runs/detect/*/weights/)\n"
+        "  • Либо положите готовую bestV1.pt (или bestV1.onnx) в корень проекта.\n"
+        f"  Искал здесь: {MODEL_PATH}"
+    )
 print(f"Загружаю модель: {MODEL_PATH}")
 model = YOLO(MODEL_PATH)
 
